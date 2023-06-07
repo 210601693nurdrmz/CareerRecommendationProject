@@ -5,7 +5,7 @@ class Issiz(Insan):
     def __init__(self, tc_no, ad, soyad, yas, cinsiyet, uyruk, statu_tecrube):
         super().__init__(tc_no, ad, soyad, yas, cinsiyet, uyruk)
         self.__statu_tecrube = statu_tecrube
-        # En uygun statüyü hesaplayıp bir public değişkene atıyoruz
+        # En uygun statüyü hesaplayıp bir değişkene atıyoruz
         self.statu = self.statu_bul()
 
     def get_statu_tecrube(self):
@@ -14,7 +14,7 @@ class Issiz(Insan):
     def set_statu_tecrube(self, statu_tecrube):
         self.__statu_tecrube = statu_tecrube
 
-    # En uygun statüyü hesaplayan metot
+    # En iyi statüyü hesaplayan metot
     def statu_bul(self):
         # Statü tecrübesi dictionary'sini alıyoruz
         tecrube_dict = self.get_statu_tecrube()
