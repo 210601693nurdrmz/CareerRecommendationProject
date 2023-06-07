@@ -42,7 +42,7 @@ def issiz_olustur():
     mavi_yaka_tecrube = int(input('Mavi Yaka Tecrübesi (Yıl): '))
     beyaz_yaka_tecrube = int(input('Beyaz Yaka Tecrübesi (Yıl): '))
     yonetici_tecrube = int(input('Yönetici Tecrübesi (Yıl): '))
-
+#değişiklikleri kaydetme testi
     statu_tecrube = {
         'mavi yaka': mavi_yaka_tecrube,
         'beyaz yaka': beyaz_yaka_tecrube,
