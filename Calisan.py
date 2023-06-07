@@ -12,10 +12,7 @@ class Calisan(Insan):
         return self.__sektor
 
     def set_sektor(self, sektor):
-        if sektor in ['teknoloji', 'muhasebe', 'insaat', 'diger']:
-            self.__sektor = sektor
-        else:
-            raise ValueError('Sektör değeri "teknoloji", "muhasebe", "insaat" veya "diger" olmalıdır.')
+        self.__sektor = sektor
 
     def get_tecrube_ay(self):
         return self.__tecrube_ay
@@ -29,6 +26,7 @@ class Calisan(Insan):
     def set_maas(self, maas):
         self.__maas = maas
 
+    # Zam hakkını hesaplayan metot
     def zam_hakki(self):
         tecrube_yil = self.get_tecrube_ay() // 12
         if tecrube_yil < 2:
@@ -48,5 +46,9 @@ class Calisan(Insan):
             yeni_maas = yeni_maas
         return yeni_maas
 
+    # İlgili yerlerde try/except kullanıyoruz
     def __str__(self):
-        return super().__str__() + f' Tecrübe: {self.get_tecrube_ay()} ay Yeni Maaş: {self.zam_hakki()} TL'
+        try:
+            return super().__str__() + f"Tecrübe: {self.get_tecrube_ay()} ay\nYeni Maaş: {self.zam_hakki()} TL\n"
+        except (TypeError, ValueError):
+            return "Tecrübe veya maaş değeri geçersiz.\n"

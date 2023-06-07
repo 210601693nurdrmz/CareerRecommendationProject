@@ -12,6 +12,7 @@ class MaviYaka(Calisan):
     def set_yipranma_payi(self, yipranma_payi):
         self.__yipranma_payi = yipranma_payi
 
+    # Zam hakkını hesaplayan metot
     def zam_hakki(self):
         tecrube_yil = self.get_tecrube_ay() // 12
         if tecrube_yil < 2:
@@ -30,3 +31,10 @@ class MaviYaka(Calisan):
         if yeni_maas == self.get_maas():
             yeni_maas = yeni_maas
         return yeni_maas
+
+    # İlgili yerlerde try/except kullanıyoruz
+    def __str__(self):
+        try:
+            return super().__str__() + f"Yıpranma Payı: {self.get_yipranma_payi()}\n"
+        except (TypeError, ValueError):
+            return "Yıpranma payı değeri geçersiz.\n"

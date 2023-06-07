@@ -44,4 +44,4 @@ class Insan:
         self.__uyruk = uyruk
 
     def __str__(self):
-        return f'Ad: {self.get_ad()} Soyad: {self.get_soyad()}'
+        return f"Ad: {self.get_ad()}\nSoyad: {self.get_soyad()}\n"

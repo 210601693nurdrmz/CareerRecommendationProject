@@ -5,7 +5,8 @@ class Issiz(Insan):
     def __init__(self, tc_no, ad, soyad, yas, cinsiyet, uyruk, statu_tecrube):
         super().__init__(tc_no, ad, soyad, yas, cinsiyet, uyruk)
         self.__statu_tecrube = statu_tecrube
-        self.__en_uygun_statu = self.statu_bul()
+        # En uygun statüyü hesaplayıp bir public değişkene atıyoruz
+        self.statu = self.statu_bul()
 
     def get_statu_tecrube(self):
         return self.__statu_tecrube
@@ -13,20 +14,33 @@ class Issiz(Insan):
     def set_statu_tecrube(self, statu_tecrube):
         self.__statu_tecrube = statu_tecrube
 
-    def get_en_uygun_statu(self):
-        return self.__en_uygun_statu
-
+    # En uygun statüyü hesaplayan metot
     def statu_bul(self):
-        mavi_yaka_puan = self.__statu_tecrube.get('mavi yaka', 0) * 0.2
-        beyaz_yaka_puan = self.__statu_tecrube.get('beyaz yaka', 0) * 0.35
-        yonetici_puan = self.__statu_tecrube.get('yonetici', 0) * 0.45
-        max_puan = max(mavi_yaka_puan, beyaz_yaka_puan, yonetici_puan)
-        if max_puan == mavi_yaka_puan:
-            return 'mavi yaka'
-        elif max_puan == beyaz_yaka_puan:
-            return 'beyaz yaka'
-        else:
-            return 'yonetici'
+        # Statü tecrübesi dictionary'sini alıyoruz
+        tecrube_dict = self.get_statu_tecrube()
 
+        # Statülerin etki oranlarını bir dictionary'de tutuyoruz
+        etki_dict = {
+            "mavi yaka": 0.2,
+            "beyaz yaka": 0.35,
+            "yonetici": 0.45
+        }
+
+        # Statülerin puanlarını hesaplamak için boş bir dictionary oluşturuyoruz
+        puan_dict = {}
+
+        # Her statü için puanı hesaplayıp dictionary'e ekliyoruz
+        for statu in tecrube_dict:
+            puan_dict[statu] = tecrube_dict[statu] * etki_dict[statu]
+
+        # Puanları büyükten küçüğe sıralayıp en büyük puanlı olanın statüsünü döndürüyoruz
+        puan_listesi = sorted(puan_dict.items(), key=lambda x: x[1], reverse=True)
+
+        return puan_listesi[0][0]
+
+    # İlgili yerlerde try/except kullanıyoruz
     def __str__(self):
-        return super().__str__() + f' En Uygun Statü: {self.get_en_uygun_statu()}'
+        try:
+            return super().__str__() + f"Statü: {self.statu}\n"
+        except AttributeError:
+            return "Statü bulunamadı.\n"

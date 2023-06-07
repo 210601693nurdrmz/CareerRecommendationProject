@@ -12,6 +12,7 @@ class BeyazYaka(Calisan):
     def set_tesvik_primi(self, tesvik_primi):
         self.__tesvik_primi = tesvik_primi
 
+    # Zam hakkını hesaplayan metot
     def zam_hakki(self):
         tecrube_yil = self.get_tecrube_ay() // 12
         if tecrube_yil < 2:
@@ -30,3 +31,10 @@ class BeyazYaka(Calisan):
         if yeni_maas == self.get_maas():
             yeni_maas = yeni_maas
         return yeni_maas
+
+    # İlgili yerlerde try/except kullanıyoruz
+    def __str__(self):
+        try:
+            return super().__str__() + f"Teşvik Primi: {self.get_tesvik_primi()} TL\n"
+        except (TypeError, ValueError):
+            return "Teşvik primi değeri geçersiz.\n"
