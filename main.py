@@ -97,7 +97,6 @@ def issiz_olustur():
             cinsiyet = input('Cinsiyet: ')
             uyruk = input('Uyruk: ')
 
-            # Tecrübe değerlerini kontrol ediyoruz
             mavi_yaka_tecrube = int(input('Mavi Yaka Tecrübesi (Yıl): '))
             beyaz_yaka_tecrube = int(input('Beyaz Yaka Tecrübesi (Yıl): '))
             yonetici_tecrube = int(input('Yönetici Tecrübesi (Yıl): '))
