@@ -11,7 +11,7 @@ class BeyazYaka(Calisan):
 
     def set_tesvik_primi(self, tesvik_primi):
         self.__tesvik_primi = tesvik_primi
-
+#işlemleri tanımladık.
     def zam_hakki(self):
         tecrube_yil = self.get_tecrube_ay() // 12
         if tecrube_yil < 2:
